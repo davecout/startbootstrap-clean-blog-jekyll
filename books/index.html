@@ -1,0 +1,25 @@
+---
+layout: page
+title: Livres
+background: '/img/dave-couture-lecture-livre.png'
+---
+
+{% assign pages = site.pages | where: 'layout', 'book' %}
+{% for page in pages %}
+
+<article class="post-preview">
+    <a href="{{ page.url | prepend: site.baseurl | replace: '//', '/' }}">
+      <h2 class="post-title">{{ page.title }}</h2>
+      {% if page.subtitle %}
+      <h3 class="post-subtitle">{{ page.subtitle }}</h3>
+      {% endif %}
+    </a>
+    <p class="post-meta">Publié par
+      {{ page.author }} en {{ page.published }}
+    </p>
+  </article>
+
+{% endfor %}
+
+
+</div>

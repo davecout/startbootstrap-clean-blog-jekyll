@@ -1,0 +1,95 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+{% if page.background %}
+<header class="masthead" style="background-image: url('{{ page.background | prepend: site.baseurl | replace: '//', '/' }}')">
+  {% else %}
+  <header class="masthead">
+    {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{ page.title }}</h1>
+            {% if page.subtitle %}
+            <h2 class="subheading">{{ page.subtitle }}</h2>
+            {% endif %}
+            <span class="meta">Publié par
+              <a href="#">{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}</a>
+              en {{ page.published }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        {{ content }}
+
+        <img class="img-fluid" src="{{ site.baseurl }}{{ page.image }}" alt="{{ page.title }}">
+        <span class="caption text-muted">{{ page.title }}</span>
+
+        <div itemscope="" itemtype="https://schema.org/Book">
+          <meta itemprop="bookFormat" content="EBook/DAISY3"/>
+          <meta itemprop="accessibilityFeature" content="largePrint/CSSEnabled"/>
+          <meta itemprop="accessibilityFeature" content="highContrast/CSSEnabled"/>
+          <meta itemprop="accessibilityFeature" content="resizeText/CSSEnabled"/>
+          <meta itemprop="accessibilityFeature" content="displayTransformability"/>
+          <meta itemprop="accessibilityFeature" content="longDescription"/>
+          <meta itemprop="accessibilityFeature" content="alternativeText"/>
+          <meta itemprop="accessibilityControl" content="fullKeyboardControl"/>
+          <meta itemprop="accessibilityControl" content="fullMouseControl"/>
+          <meta itemprop="accessibilityHazard" content="noFlashingHazard"/>
+          <meta itemprop="accessibilityHazard" content="noMotionSimulationHazard"/>
+          <meta itemprop="accessibilityHazard" content="noSoundHazard"/>
+          <meta itemprop="accessibilityAPI" content="ARIA"/>
+       
+          <dl>
+             <dt>Titre</dt>
+             <dd itemprop="name">{{ page.title }}</dd>
+             <dt>Auteurs</dt>
+             <dd itemprop="author" itemtype="https://schema.org/Person" itemscope=""><span itemprop="name">{{ page.author }}</span></dd>
+             <dt>Synopsis</dt>
+             <dd itemprop="description">{{ page.synopsis }}</dd>
+             <dt>Nombre de pages</dt>
+             <dd><span itemprop="numberOfPages">{{ page.pages }}</span></dd>
+             <dt>ISBN-13</dt>
+             <dd itemprop="isbn">{{ page.isbn_13 }}</dd>
+             <dt>Éditeur</dt>
+             <dd itemprop="publisher" itemtype="https://schema.org/Organization" itemscope=""><span itemprop="name">{{ page.editor }}</span></dd>
+             <dt>Date du droit d'auteur</dt>
+             <dd itemprop="copyrightYear">{{ page.copywright_date }}</dd>
+             <dt>Droit d'auteur</dt>
+             <dd itemprop="copyrightHolder" itemtype="https://schema.org/Organization" itemscope=""><span itemprop="name">{{ page.copywright }}</span></dd>
+             <dt>Langue</dt>
+             <dd><meta itemprop="inLanguage" content="{{ book.language_code }}"/>{{ page.language }}</dd>
+             <dt>Catégories</dt>
+             <dd><span itemprop="genre">{{ page.category }}</span>
+          </dl>
+       </div>
+
+        <hr>
+
+        <div class="clearfix">
+
+          {% if page.previous.url %}
+          <a class="btn btn-primary float-left" href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ page.previous.title }}">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          {% endif %}
+          {% if page.next.url %}
+          <a class="btn btn-primary float-right" href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ page.next.title }}">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          {% endif %}
+
+        </div>
+
+      </div>
+    </div>
+  </div>

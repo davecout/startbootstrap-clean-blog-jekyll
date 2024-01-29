@@ -17,9 +17,9 @@ layout: default
             {% if page.subtitle %}
             <h2 class="subheading">{{ page.subtitle }}</h2>
             {% endif %}
-            <span class="meta">Posted by
+            <span class="meta">Publié par
               <a href="#">{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}</a>
-              on {{ page.date | date: '%B %d, %Y' }} &middot; {% include read_time.html
+              le {{ page.date | date: '%d %B %Y' }} &middot; {% include read_time.html
               content=page.content %}
             </span>
           </div>
@@ -27,6 +27,23 @@ layout: default
       </div>
     </div>
   </header>
+
+  <script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "BlogPosting",
+        "@id": "{{ page.url | prepend: site.baseurl | replace: '//', '/' }}",
+        "headline": "{{ page.subtitle }}",
+        "name": "{{ page.title }}",
+        "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ page.author }}",
+            }
+        },
+        "wordCount": "{{ page.content | number_of_words }}"
+    }
+    </script>
 
   <div class="container">
     <div class="row">

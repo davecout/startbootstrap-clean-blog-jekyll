@@ -1,0 +1,22 @@
+---
+layout: page
+title: Glossaire
+background: '/img/dave-couture-kanban-post-it.png'
+---
+
+<p>Glossaire des termes couramment utilisés en technologie de l'information.</p>
+
+{% assign items_grouped = site.pages | where: 'layout', 'definition' | sort: 'title' | group_by: 'entry' %}
+{% for group in items_grouped %}
+  <h2 id="{{group.name}}">{{group.name}}</h2>
+  {% for item in group.items %}
+    <dl>
+      <a href="{{ item.url | prepend: site.baseurl | replace: '//', '/' }}">
+        <dt class="post-title">{{ item.title }}</dt>
+        <dl class="post-subtitle">{{ item.excerpt | strip_html | truncatewords: 15 }}</dl>
+      </a>
+  </dl>
+  {% endfor %}
+{% endfor %}
+
+</div>
